@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+            <title>TheraPsy Rechnung</title>
+            <style>
+                
+                
+                /* CSS RESET */
+                
+                html, body, div, span, applet, object, iframe,
+                h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+                a, abbr, acronym, address, big, cite, code,
+                del, dfn, em, img, ins, kbd, q, s, samp,
+                small, strike, strong, sub, sup, tt, var,
+                b, u, i, center,
+                dl, dt, dd, ol, ul, li,
+                fieldset, form, label, legend,
+                table, caption, tbody, tfoot, thead, tr, th, td,
+                article, aside, canvas, details, embed, 
+                figure, figcaption, footer, header, hgroup, 
+                menu, nav, output, ruby, section, summary,
+                time, mark, audio, video {
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                    font-size: 100%;
+                    font: inherit;
+                    vertical-align: baseline;
+                }
+                /* HTML5 display-role reset for older browsers */
+                article, aside, details, figcaption, figure, 
+                footer, header, hgroup, menu, nav, section {
+                    display: block;
+                }
+                body {
+                    line-height: 1;
+                }
+                ol, ul {
+                    list-style: none;
+                }
+                blockquote, q {
+                    quotes: none;
+                }
+                blockquote:before, blockquote:after,
+                q:before, q:after {
+                    content: '';
+                    content: none;
+                }
+                table {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                }
+                
+                /*CSS RESET END */
+                
+                
+                
+               .invoice-box{
+                    max-width:1100px;
+                    margin:auto;
+                    padding:30px;
+                    /*border:1px solid #eee;*/
+                    /*box-shadow:0 0 10px rgba(0, 0, 0, .15); */
+                    font-size:16px;
+                    line-height:24px;
+                    font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                    color:#555;
+                   width: 550px;
+                }
+            
+            .invoice-box table{
+                width:100%;
+                line-height:inherit;
+                text-align:left;
+                page-break-inside: avoid
+            }
+            
+            .invoice-box table td{
+                padding:5px;
+                vertical-align:top;
+                page-break-inside: avoid
+            }
+            
+            .invoice-box table tr.top table td{
+                padding-bottom:20px;
+            }
+            
+            .invoice-box table tr.top table td.title{
+                font-size:45px;
+                line-height:45px;
+                color:#333;
+            }
+            
+            .invoice-box table tr.information table td{
+                padding-bottom:40px;
+            }
+            
+            .invoice-box table tr.heading td{
+                background-color: #eee;
+                border-bottom:1px solid #ddd;
+                font-weight:bold; 
+            }
+                
+               
+            
+            .invoice-box table tr.details td{
+                padding-bottom:20px;
+            }
+            
+            .invoice-box table tr.item td{
+                border-bottom:1px solid #eee;
+            }
+            
+            .invoice-box table tr.item.last td{
+                border-bottom:none;
+            }
+            
+            .invoice-box table tr.total td{
+                border-top:1px solid #eee;
+                font-weight:bold;
+            }
+            
+                .invoice-box .refnr {
+                    font-size: 20px;
+                }
+                
+                .invoice-box .accentcolor {
+                    color: #00AEDB;
+                }
+                
+                .invoice-box .bl {
+                    border-bottom: 1px solid #eee;
+                }
+                .invoice-box .br {
+                    border-right: 1px solid #eee;
+                }
+                
+                .invoice-box table.bl {
+                    border-collapse: collapse;
+                }
+                
+                .invoice-box table.border-collapse {
+                    border-collapse: collapse;
+                }
+                
+                .mt-5 {
+                    margin-top: 20px;
+                }
+                
+                .mt-1{
+                    margin-top: 4px;
+                }
+				
+				.mt-2 {
+					margin-top: 10px;
+				}
+                
+                .pt-5 {
+                    padding-top: 15px;
+                }
+                .spacer {
+                    height: 20px;
+                }
+                
+                .spacer-5{
+                    height: 100px;
+                }
+                
+                .header {
+                    font-size: 18px;
+                }
+                
+                .align-right {
+                    text-align: right;
+                }
+                
+                .equalWidth table {
+                    table-layout: fixed;
+                }
+                
+                .equalWidth td {
+                    width: 33%;
+                }
+                td.width80 {
+                    width: 75%;
+                }
+                td.width20 {
+                    width: 25%;
+                }
+                div.alignImageRight {
+                    float: right;
+                    clear: right;
+                    text-align: right;
+                }
+
+                td.alignRight {
+                    float: right;
+                    clear: right;
+                    text-align: right;
+                }
+				.centerFloat {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-right: -50%;
+					transform: translate(-50%, -50%)
+				}
+				.margin-top-90 {
+				margin-top: 90px;
+				}
+				.margin-top-140 {
+				margin-top: 140px;
+				}
+				
+				.text-align-center{
+					
+					horizontal-align: middle;
+				}
+				.test {
+				float: right; }
+            </style>
+            </head>
+    <body>
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr class="top">
+                        <td colspan="5">
+                            <table class="bl">
+                                <tbody>
+                                    <tr>
+                                        <td class="refnr">Ref. Nr.: {invoice_reference}</td>
+                                        <td></td>
+										<td></td>
+                                        <td></td>
+                                        <td class="alignRight">{invoice_timestamp}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="belegnr">Beleg Nr.: {invoice_number}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="information">
+                        <td colspan="5">
+                            <table>
+                                <tbody>
+                                    <tr>
+										<td></td>
+                                        <td></td>
+                                        <td></td>
+										<td></td>
+                                        <td class="alignRight">
+                                            {name}<br>
+                                            {street} {houseNumber}<br>
+                                            {postalCode} {city}<br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr class="heading">
+                        <td> Anzahl </td>
+                        <td> Dienstleistungsb.</td>
+                        <td> Einzelpreis </td>
+                        <td> MWST</td>
+                        <td> Gesamt </td>
+                    </tr>
+					{BelegElemente{
+                  <tr>
+                      <td> {item_quantity} </td>
+                      <td> {item_name} </td>
+                      <td> {item_price} € </td>
+                      <td> {item_taxRate} % </td>
+                      <td> {item_total} € </td>
+                  </tr>
+				  }BelegElemente}
+
+                     <tr class="total">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Summe:</td>
+                        <td>{invoice_total} € </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                </tbody>
+            </table>
+
+            <div class="spacer bl"></div>
+
+            <p class="mt-2">Zahlungsart: {invoice_payment}</p>
+			<table>
+				<tr>
+					<td>
+						<img class="" style="float: left;display:block;width:100px;height:100px;" src="{Base64EncodedQRCode}">
+
+						<p class="test">{signature_text}</p>
+					</td>
+				</tr>
+			</table>	
+            
+            <div class="spacer bl"></div>
+
+
+        </div>
+
+    </body>
+</html>

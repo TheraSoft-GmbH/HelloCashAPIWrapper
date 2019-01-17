@@ -35,12 +35,19 @@ To send a normal "CreateInvoice" request with this library do the following:
             var response = await new Request().SendRequestAsync<CreateInvoiceResponseData>(authenticator, requestData);
 
             //Generate pdf invoice
-            new PdfReceiptGenerator(response, new FileInfo(targetPdfPath));
+            var pdfGenerator = new PdfReceiptGenerator(response, new FileInfo(targetPdfPath));
+            pdfGenerator.SaveAsPdf(openAfterSuccess : true); //Saves the pdf and opens it after generation
+            pdfGenerator.SaveAsHtml(openAfterSuccess: true); //Saves the plain html and opens it with the default viewer
 
             //Notify user
             Console.WriteLine("An Invoice was added to your HelloCash account");
             
 Link to AuthenticationString explanation
 //See https://intercom.help/hellocash-faq/faq-deutsch/anleitungen-and-allgemeine-informationen/gibt-es-eine-schnittstelle-zu-hellocash
+
+## PDF Output
+The pdf output looks something like this:
+![ExamplePDF](https://github.com/luchspeter/HelloCashAPIWrapper/blob/master/README_Resources/ExamplePdf.PNG)
+
 
 A more detailled explanation and/or example projects will be added here in the future

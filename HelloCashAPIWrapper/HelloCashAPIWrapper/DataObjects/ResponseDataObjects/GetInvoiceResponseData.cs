@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HelloCashAPIWrapper.DataObjects
 {
-    class GetInvoiceResponseData : InvoiceData
+    public class GetInvoiceResponseData : InvoiceData
     {
     }
 }

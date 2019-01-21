@@ -8,16 +8,31 @@ namespace HelloCashAPIWrapper.Authentication
 {
     public class HelloCashAuthenticator
     {
-        public HelloCashAuthenticator(string authenticationString)
+        public HelloCashAuthenticator(string authenticationString, bool isBase64Encoded = true)
         {
-            this.AuthenticationString = authenticationString;
+            if (isBase64Encoded == false)
+            {
+                this.AuthenticationString = EncodeToBase64(authenticationString);
+            }
+            else
+            {
+                this.AuthenticationString = authenticationString;
+            }
         }
+
 
         private string AuthenticationString { get; set; }
 
         public string GetAuthenticationString()
         {
             return AuthenticationString;
+        }
+
+        public string EncodeToBase64(string toEncode)
+        {
+            byte[] toEncodeAsBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(toEncode);
+            string returnValue = System.Convert.ToBase64String(toEncodeAsBytes);
+            return returnValue;
         }
     }
 }

@@ -49,5 +49,8 @@ Link to AuthenticationString explanation
 The pdf output looks something like this:
 ![ExamplePDF](https://github.com/luchspeter/HelloCashAPIWrapper/blob/master/README_Resources/ExamplePdf.PNG)
 
-
-A more detailled explanation and/or example projects will be added here in the future
+## Examples
+The example project contains two examples for creating an invoice with this API wrapper.
+The first example demonstrates the "plain" usage of the wrapper.
+The second example shows how to use the PDFCustomizer to customize the pdf output. Transformers and a custom Dictionary is used.
+To run the examples open the ConsoleApplication, build and launch the application. After the example selection a valid HelloCash Email and Password authentication is needed. Both examples create an invoice in TestMode and open the pdf output.

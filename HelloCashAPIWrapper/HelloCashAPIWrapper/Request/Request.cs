@@ -94,5 +94,27 @@ namespace HelloCashAPIWrapper.Request
             }
 
         }
+
+        /// <summary>
+        /// Invokes the SendRequestAsync Method synchronously
+        /// <para>Throws the same exceptions as the SendRequestAsync method</para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Authenticator"></param>
+        /// <param name="RequestData"></param>
+        /// <returns></returns>
+        public T SendRequest<T>(Authentication.HelloCashAuthenticator Authenticator, IRequestData RequestData)
+        {
+            try
+            {
+                var result = HelloCashAPIWrapper.HelperClasses.AsyncHelper.RunSync<T>(() => SendRequestAsync<T>(Authenticator, RequestData));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                //The async helper wrapps exceptions
+                throw ex.InnerException;
+            }
+        }
     }
 }

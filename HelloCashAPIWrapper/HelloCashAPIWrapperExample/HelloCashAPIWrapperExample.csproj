@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Example1_CreateSimpleInvoice.cs" />
     <Compile Include="Example2_CreateInvoiceWithPDFCustomizer.cs" />
+    <Compile Include="Example3_CreateSimpleInvoiceSync.cs" />
+    <Compile Include="Example4_ExceptionHandling.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared.cs" />

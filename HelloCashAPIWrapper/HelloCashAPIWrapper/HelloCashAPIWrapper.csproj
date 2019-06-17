@@ -77,6 +77,8 @@
     <Compile Include="DataObjects\RequestDataObjects\RequestData.cs" />
     <Compile Include="DataObjects\ResponseDataObjects\InvoiceData.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Exceptions\InDemoNotAvailableException.cs" />
+    <Compile Include="HelperClasses\AsyncHelper.cs" />
     <Compile Include="PdfReceiptGenerator\HtmlToPdf\HtmlToPdfConverter.cs" />
     <Compile Include="PdfReceiptGenerator\PdfCustomization.cs" />
     <Compile Include="PdfReceiptGenerator\PdfReceiptGenerator.cs" />
@@ -104,5 +106,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

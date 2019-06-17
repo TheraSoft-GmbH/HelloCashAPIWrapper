@@ -51,6 +51,9 @@ The pdf output looks something like this:
 
 ## Examples
 The example project contains two examples for creating an invoice with this API wrapper.
-The first example demonstrates the "plain" usage of the wrapper.
-The second example shows how to use the PDFCustomizer to customize the pdf output. Transformers and a custom Dictionary is used.
-To run the examples open the ConsoleApplication, build and launch the application. After the example selection a valid HelloCash Email and Password authentication is needed. Both examples create an invoice in TestMode and open the pdf output.
+- Example 1: demonstrates the "plain" usage of the wrapper.
+- Example 2: shows how to use the PDFCustomizer to customize the pdf output. Transformers and a custom Dictionary is used. 
+- Example 3: uses a async helper to execute the code synchronsously
+- Example 4: shows how to catch and process all commonly thrown exceptions
+
+To run the examples open the ConsoleApplication, build and launch the application. After the example selection a valid HelloCash Email and Password authentication is needed. All examples create an invoice in TestMode and open the pdf output.

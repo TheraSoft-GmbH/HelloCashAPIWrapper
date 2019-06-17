@@ -50,7 +50,7 @@ The pdf output looks something like this:
 ![ExamplePDF](https://github.com/luchspeter/HelloCashAPIWrapper/blob/master/README_Resources/ExamplePdf.PNG)
 
 ## Examples
-The example project contains two examples for creating an invoice with this API wrapper.
+The example project contains some examples for creating an invoice with this API wrapper.
 - Example 1: demonstrates the "plain" usage of the wrapper.
 - Example 2: shows how to use the PDFCustomizer to customize the pdf output. Transformers and a custom Dictionary is used. 
 - Example 3: uses a async helper to execute the code synchronsously

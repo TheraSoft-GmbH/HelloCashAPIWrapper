@@ -21,6 +21,7 @@ namespace HelloCashAPIWrapper.Request
         /// <param name="Authenticator">Authentication token to be used for API call</param>
         /// <param name="RequestData">Defines type and payload of API request</param>
         /// <exception cref="Exception">Incomplete input values | Deserializing failed | Invoice not found</exception>
+        /// <exception cref="Exceptions.InDemoNotAvailableException">The API is not available in the demo mode. The account has to be at least in the free mode</exception>
         /// <exception cref="System.Security.Authentication.AuthenticationException"></exception>
         /// <returns>API response deserialized into Task <typeparam name="T"></typeparam> object</returns>
         public async Task<T> SendRequestAsync<T>(Authentication.HelloCashAuthenticator Authenticator, IRequestData RequestData)
@@ -61,12 +62,25 @@ namespace HelloCashAPIWrapper.Request
 
             }
 
+
             //Wrong authentication
-            if (responseData.Equals("{\"error\":\"Invalid Basic authenticaten: Benutzername oder Passwort falsch\"}"))
-                throw new System.Security.Authentication.AuthenticationException("UserAuthentication failed");
-            //return default(T);
-            if (responseData.Equals("[\"Rechnung nicht gefunden\"]"))
-                throw new Exception("Invoice not found");
+            if (responseData.Contains("{\"error\":\"Invalid Basic authentication:"))
+                throw new System.Security.Authentication.AuthenticationException($"UserAuthentication failed. Response: {responseData}");
+
+            if (responseData.Contains("[\"Rechnung nicht gefunden\"]"))
+                throw new Exception($"Invoice not found. Server Response: {responseData}");
+
+            if (responseData == "")
+                throw new Exception($"Response string was null or empty in HelloCash call. Target deserialization type: \"{typeof(T)}\"");
+
+            if (responseData.Contains("\"An Error occurred\""))
+                throw new ArgumentException($"An Error occurred. Requested Id: {RequestData.ToJson()}. Server Response: {responseData}");
+
+            if (responseData.Contains("{\"error\":\"The API is not available in demo mode\"}"))
+                throw new Exceptions.InDemoNotAvailableException();
+
+            if (responseData.Contains("{\"error\":\""))
+                throw new Exception($"An error occurred. Server Response: {responseData}");
 
             //Attempt to deserialize API response into T
             try
@@ -76,7 +90,7 @@ namespace HelloCashAPIWrapper.Request
             }
             catch (Exception ex)
             {
-                throw new Exception($"HelloCash response could not be deserialized into a {typeof(T)} object", ex);
+                throw new Exception($"HelloCash response could not be deserialized into {typeof(T)} object, inner message: {ex.Message}, not parsable json: \"{responseData}\"", ex);
             }
 
         }
